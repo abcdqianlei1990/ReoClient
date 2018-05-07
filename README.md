@@ -13,7 +13,6 @@
       List<String> list = ArrayList<String>()
       list.add("www.213.com")
       list.add("www.aasfdf.com")
-      list.add("h5.xiaozhijie.com")
       
       UfClient.Builder builder = UfClient.Builder(context)
       String baseUrl = "http://api.test.com/"
