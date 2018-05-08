@@ -26,3 +26,20 @@
       MyApiManager apiManager = client.createApiManager(MyApiManager::class.java)
     }
 ```
+## How to do
+### step 1.Add it in your root build.gradle at the end of repositories:
+```groovy
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+### step 2. Add the dependency
+```groovy
+	dependencies {
+          ...
+	        compile 'com.github.abcdqianlei1990:ReoClient:1.0'
+	}
+```
