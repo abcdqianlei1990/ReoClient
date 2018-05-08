@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/channey/resposbility/ReoClient/app/build/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/Users/channey/.android/build-cache/df4b6efecc831167489f1e639e80cce480faacf6/output/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/channey/resposbility/ReoClient/app/build/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/channey/.android/build-cache/df4b6efecc831167489f1e639e80cce480faacf6/output/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/channey/resposbility/ReoClient/app/build/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/channey/.android/build-cache/df4b6efecc831167489f1e639e80cce480faacf6/output/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/channey/resposbility/ReoClient/app/build/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/channey/.android/build-cache/df4b6efecc831167489f1e639e80cce480faacf6/output/res/layout-v21/notification_template_custom_big.xml"
+    }
+]
