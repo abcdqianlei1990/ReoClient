@@ -14,14 +14,15 @@
       list.add("www.213.com")
       list.add("www.aasfdf.com")
       
-      UfClient.Builder builder = UfClient.Builder(context)
+      ReoClient.Builder builder = ReoClient.Builder(context)
       String baseUrl = "http://api.test.com/"
       builder.setBaseUrl(baseUrl)
         .setHeaders(headers)
         .setTimeout(3 * 1000)
         .setTrustHost(list) //not necessary
-        .setCache(true) //not necessary
-      UfClient client = builder.create()
+        .setCacheable(true) //not necessary
+        .openLog(true) //not necessary
+      ReoClient client = builder.create()
       MyApiManager apiManager = client.createApiManager(MyApiManager::class.java)
     }
 ```
