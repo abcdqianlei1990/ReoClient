@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/logging-interceptor/3.4.1/381fc1096ba65040d8e80ea43b2e1d9bad02345e/logging-interceptor-3.4.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="381fc1096ba65040d8e80ea43b2e1d9bad02345e">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/logging-interceptor-3.4.1_19025bcdc9118e5152ae060deba8b63dbf38badc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.android/build-cache/75b5a870a2d77a658fd5d14535b9127c7d8797ee/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="88246166d5afb106f532f6e6deae683c66b42c89">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/classes_7a5e6647dc81b63bf8b6ca14a8aba2a4e1e74bda.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.android/build-cache/20757da501ee6b017166e726c4adc90b5c028fe0/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/classes_53a1e0976629777bbe35c69cb6efcd2df1fef231.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.android/build-cache/d58f2cb5e1c9f455f4e84e438424c6347bb19f69/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="952944218ecedea1554a513dec0c14d570642843">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/classes_f3492232d275b8f43e13cefde446bc8fdfd460fe.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.android/build-cache/df4b6efecc831167489f1e639e80cce480faacf6/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="47471eb19df288158b00b8d9cfa41bce7373f5cc">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/classes_13efd73b48ce7db1fa1bbe4651fad12601c8b2e6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.android/build-cache/ac2dfac939ddda2114f98431e92dd4b1cc4be3c4/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="9935891f23923f39d002087085d9696568a9f657">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/classes_c4f33768c82deb0150ecec63a14f9b0f7a75ccda.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/retrofit-2.1.0_39db4b463c5212f40086a8b7a07905e035d21549.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/resposbility/UserfulClient/app/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="b70682ec0ce7ed62dbaebaddf56f48b81bf41b96">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/classes_960fc5b9f61b5a1028b4aa1d03d7f5aa83e63508.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.2.0/42bfaf64c94f3848ebf5cf1c2ea4ec9d1b3ac6c8/rxjava-1.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="42bfaf64c94f3848ebf5cf1c2ea4ec9d1b3ac6c8">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/rxjava-1.2.0_fe212be4dc855d82f52c3fb68a758dfb85434a24.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.android/build-cache/dceaab240b30340bccc7834394b01060ddf6a738/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="2e92aa0163544a804a0b34f169ca61801770839a">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/classes_da659ed5d2e1f1ba125e5f45fcd5a8487bf4eff5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.android/build-cache/eade7ebce30fc2f01df9925a4f1142ace3f81a7f/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="5a2386ad9bfff580b206a7fe305cdccd00798159">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/classes_338c7ab707f28af18de96da0d1e299323adb36c0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/26.0.0-alpha1/support-annotations-26.0.0-alpha1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="023ee503b631f69511e335a061ea008f8da60f40">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/support-annotations-26.0.0-alpha1_8a76884e6553f9b148ed6673f1ef38d56d723c69.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/adapter-rxjava/2.1.0/693eddc23e87ab13f9cf5001707ce8e7e1d1ff01/adapter-rxjava-2.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="693eddc23e87ab13f9cf5001707ce8e7e1d1ff01">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/adapter-rxjava-2.1.0_e120e2167e93ba740b7768e54e8d18725859bd5e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.11.0/840897fcd7223a8143f1d9b6f69714e7be34fd50/okio-1.11.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="840897fcd7223a8143f1d9b6f69714e7be34fd50">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/okio-1.11.0_0cb2762dc0084d991c843a544c6b81f6a3e6fb82.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.1.0/aa557d71ead91cbf26e0c316a0f593d168303309/converter-gson-2.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/converter-gson-2.1.0_5a0cdeaa93fb8b256bfd558da56085b405aa26c9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.android/build-cache/b63b395af58afce3ebb40f5108b90625d52691b2/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/classes_c9b6fab0ff469712aac590732a163e3b48724d8f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/gson-2.7_228355d8c5a706dc15f12bd0e8de74b1f97162ad.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.android/build-cache/874740c2a3ed80a09ae16f14fe18a612a35ff830/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="fcd01fd11233459f546c437ec927e9b61bf7caf1">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/classes_f4eefe154fe526cb5a6274a33cb2bb7eba084415.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.2_360ad30f339f43b0cf08728563c15a08e46998ee.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.android/build-cache/675bae8cfc908bd27fa3dae5f14484b06021780f/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/classes_8a7c0fc9ead5bfb41d341e10cd4f35796f8c13d9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.android/build-cache/802294828575f54849c4270abe136320d7e2111c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="18d31838aa4fcc768a8a0516e22cc13b94655d89">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/classes_54c59224a4df074e87c3cce5c2752ecdaac19400.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/channey/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.5.0/4b0bb6bfbecbdd42b97ff400af342bfe7f32bc83/okhttp-3.5.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.3"
+        sha1="4b0bb6bfbecbdd42b97ff400af342bfe7f32bc83">
+        <dex dex="/Users/channey/resposbility/UserfulClient/sample/build/intermediates/pre-dexed/debug/okhttp-3.5.0_3e5b7eed7ce2939d194bcca1a43651c7b76a08ca.jar" />
+    </item>
+
+</items>

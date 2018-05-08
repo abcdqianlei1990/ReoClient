@@ -1,10 +1,10 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.3"
     defaultConfig {
-        applicationId "com.ufclient.cn.userfulclient"
+//        applicationId "com.ufclient.cn.userfulclient"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1

@@ -2,27 +2,24 @@ package com.ufclient.cn.userfulclient.client;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 import android.util.Log;
 
-import com.ufclient.cn.userfulclient.BuildConfig;
+import com.ufclient.cn.userfulclient.util.Util;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
 import okhttp3.Cache;
-import okhttp3.Headers;
+import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -44,13 +41,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class UfClient {
     private static final String TAG = "UsefulClient";
     private Retrofit mRetrofit;
-    private static final int CACHE_MAX_AGE = 3600 * 24 * 3 * 1000;  //3天
-    private static final String IS_CACHE = "1";
+    private static final int CACHE_MAX_AGE = 1 * 24 * 3600 * 1000;  //1天
+    private Context mContext;
     private String mBaseUrl;
     private Map<String,String> mHeaders;
-    private long mTimeout;
+    private long DEFAULT_TIMEOUT = 10 * 60;
+    private long mTimeout = DEFAULT_TIMEOUT;
     private List<Interceptor> mInterceptors;
     private List<Interceptor> mNetworkInterceptors;
+    private boolean mCacheable = false;
+    private boolean mOpenLog = false;   //debug模式下为true
     //https域名
     private static List<String> mTrustHostList = new ArrayList<String>();
 
@@ -64,8 +64,7 @@ public class UfClient {
             if (cacheControl == null || cacheControl.contains("no-store") || cacheControl.contains("no-cache") ||
                     cacheControl.contains("must-revalidate") || cacheControl.contains("max-age=0")) {
                 Response.Builder newBuilder = originalResponse.newBuilder();
-                String isCache = request.header("isCache");
-                if(!TextUtils.isEmpty(isCache) && IS_CACHE.equals(isCache)){
+                if(mCacheable){
                     newBuilder.header("Cache-Control", "public, max-age=" + CACHE_MAX_AGE)
                             .removeHeader("Pragma");
                 }
@@ -78,21 +77,21 @@ public class UfClient {
         }
     };
 
-    private final Interceptor REWRITE_REQUEST_INTERCEPTOR = new Interceptor() {
+    private final Interceptor CACHE_MODE_INTERCEPTOR = new Interceptor() {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
-//            if (!NetworkUtil.isNetworkAvailable(app.getApplication())) {
-//                request = request.newBuilder()
-//                        .header("Cache-Control", "public, only-if-cached")
-//                        .removeHeader("Pragma")
-//                        .build();
-//            }else {
-//                request = request.newBuilder()
-//                        .cacheControl(CacheControl.FORCE_NETWORK)
-//                        .removeHeader("Pragma")
-//                        .build();
-//            }
+            if (Util.isNetworkAvailable(mContext)) {
+                request = request.newBuilder()
+                        .cacheControl(CacheControl.FORCE_NETWORK)
+                        .removeHeader("Pragma")
+                        .build();
+            }else {
+                request = request.newBuilder()
+                        .header("Cache-Control", "public, only-if-cached")
+                        .removeHeader("Pragma")
+                        .build();
+            }
             Response response = chain.proceed(request);
             return response;
         }
@@ -123,21 +122,27 @@ public class UfClient {
                 String key = entry.getKey();
                 String value = entry.getValue();
                 builder.addHeader(key, value);
-                if(BuildConfig.DEBUG) Log.d(TAG,"-------- header:"+key+"#"+value+" --------");
+                if(mOpenLog) Log.d(TAG,"-------- header:"+key+"#"+value+" --------");
             }
         }
     }
 
     private void initClient(Context context){
         OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
-        if(BuildConfig.DEBUG){
+        if(mOpenLog){
             // log interceptor
             HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
             httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             builder.addInterceptor(httpLoggingInterceptor);
         }
-        File cacheFile = new File(context.getCacheDir(),"dxdCache");
-        Cache cache = new Cache(cacheFile, 1024 * 1024 * 10); //10Mb
+
+        if (mCacheable){
+            File cacheFile = new File(context.getCacheDir(),"usefulClientCache");
+            Cache cache = new Cache(cacheFile, 1024 * 1024 * 20); //20Mb
+            builder.cache(cache);
+            builder.addNetworkInterceptor(REWRITE_RESPONSE_INTERCEPTOR);
+            builder.addInterceptor(CACHE_MODE_INTERCEPTOR);
+        }
         builder.retryOnConnectionFailure(true)
                 .connectTimeout(mTimeout, TimeUnit.MILLISECONDS)
                 .readTimeout(mTimeout, TimeUnit.MILLISECONDS)
@@ -154,7 +159,6 @@ public class UfClient {
                 builder.addNetworkInterceptor(i);
             }
         }
-        builder.cache(cache);
 
         //默认信任base url域名
         if (mTrustHostList.size() == 0){
@@ -211,6 +215,10 @@ public class UfClient {
         };
     }
 
+    public void setContext(Context context){
+        this.mContext = context;
+    }
+
     public void setBaseUrl(String url){
         this.mBaseUrl = url;
     }
@@ -235,11 +243,19 @@ public class UfClient {
         return mRetrofit.create(cls);
     }
 
+    public void openLog(boolean open){
+        this.mOpenLog = open;
+    }
+
     public void setTrustHost(List<String> list){
         if (list != null){
             mTrustHostList.clear();
             mTrustHostList.addAll(list);
         }
+    }
+
+    public void setCacheable(boolean cacheable){
+        this.mCacheable = cacheable;
     }
 
     public static class Builder{
@@ -249,6 +265,7 @@ public class UfClient {
         public Builder(Context context) {
             this.mContext = context;
             P = new UfClient.Params(context);
+            P.mOpenLog = Util.isDebug(mContext);
         }
 
         public Builder setBaseUrl(String url){
@@ -281,14 +298,27 @@ public class UfClient {
             return this;
         }
 
+        public Builder setCacheable(boolean cacheable){
+            P.mCacheable = cacheable;
+            return this;
+        }
+
+        public Builder openLog(boolean open){
+            P.mOpenLog = open;
+            return this;
+        }
+
         public UfClient create(){
             UfClient client = new UfClient();
+            client.setContext(P.mContext);
             client.setBaseUrl(P.mBaseUrl);
             client.setHeaders(P.mHeaders);
             client.setTimeout(P.mTimeout);
             client.setInterceptors(P.mInterceptors);
             client.setNetworkInterceptors(P.mNetworkInterceptors);
             client.setTrustHost(P.mTrustHostList);
+            client.setCacheable(P.mCacheable);
+            client.openLog(P.mOpenLog);
             client.initClient(P.mContext);
             return client;
         }
@@ -302,6 +332,8 @@ public class UfClient {
         private List<Interceptor> mInterceptors;
         private List<Interceptor> mNetworkInterceptors;
         private List<String> mTrustHostList;
+        private boolean mCacheable;
+        private boolean mOpenLog;
 
         public Params(Context mContext) {
             this.mContext = mContext;
