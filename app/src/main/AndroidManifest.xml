@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 
-    package="com.ufclient.cn.userfulclient">
+    package="com.reoclient.cn">
 
     <application
         android:allowBackup="true"

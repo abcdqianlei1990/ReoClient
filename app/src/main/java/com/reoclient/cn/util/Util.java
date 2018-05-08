@@ -1,4 +1,4 @@
-package com.ufclient.cn.userfulclient.util;
+package com.reoclient.cn.util;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;

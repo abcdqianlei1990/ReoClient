@@ -1,4 +1,4 @@
-package com.ufclient.cn.userfulclient;
+package com.ufclient.cn.reoclient;
 
 import org.junit.Test;
 

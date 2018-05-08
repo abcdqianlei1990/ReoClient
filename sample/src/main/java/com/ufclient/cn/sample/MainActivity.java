@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ufclient.cn.userfulclient.client.UfClient;
+import com.reoclient.cn.client.UfClient;
 
 import rx.Observable;
 import rx.Subscriber;

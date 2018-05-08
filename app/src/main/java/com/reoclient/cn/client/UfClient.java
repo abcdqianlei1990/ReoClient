@@ -1,10 +1,10 @@
-package com.ufclient.cn.userfulclient.client;
+package com.reoclient.cn.client;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.ufclient.cn.userfulclient.util.Util;
+import com.reoclient.cn.util.Util;
 
 import java.io.File;
 import java.io.IOException;
