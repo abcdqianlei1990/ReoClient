@@ -39,7 +39,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ReoClient {
-    private static final String TAG = "UsefulClient";
+    private static final String TAG = "ReoClient";
+    private static final String CACHE_FILE_NAME = "reoClientCache";
     private Retrofit mRetrofit;
     private static final int CACHE_MAX_AGE = 1 * 24 * 3600 * 1000;  //1天
     private Context mContext;
@@ -137,8 +138,8 @@ public class ReoClient {
         }
 
         if (mCacheable){
-            File cacheFile = new File(context.getCacheDir(),"usefulClientCache");
-            Cache cache = new Cache(cacheFile, 1024 * 1024 * 20); //20Mb
+            File cacheFile = new File(context.getCacheDir(),CACHE_FILE_NAME);
+            Cache cache = new Cache(cacheFile, 1024 * 1024 * 10); //10Mb
             builder.cache(cache);
             builder.addNetworkInterceptor(REWRITE_RESPONSE_INTERCEPTOR);
             builder.addInterceptor(CACHE_MODE_INTERCEPTOR);
