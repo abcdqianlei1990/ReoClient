@@ -8,6 +8,6 @@ import retrofit2.http.Query;
  */
 
 public interface ApiManager {
-    @GET("weather/json.shtml")
+    @GET("open/api/weather/json.shtml")
     rx.Observable<Bean> getWeather(@Query("city") String city);
 }

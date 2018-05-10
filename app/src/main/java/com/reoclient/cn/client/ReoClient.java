@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.reoclient.cn.convert.NoBodyConvertFactory;
 import com.reoclient.cn.util.Util;
 
 import java.io.File;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -41,10 +43,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ReoClient {
     private static final String TAG = "ReoClient";
     private static final String CACHE_FILE_NAME = "reoClientCache";
-    private Retrofit mRetrofit;
     private static final int CACHE_MAX_AGE = 1 * 24 * 3600 * 1000;  //1天
     private Context mContext;
-    private String mBaseUrl;
+    private List<String> mBaseUrl;
     private Map<String,String> mHeaders;
     private long DEFAULT_TIMEOUT = 10 * 60;
     private long mTimeout = DEFAULT_TIMEOUT;
@@ -54,6 +55,7 @@ public class ReoClient {
     private boolean mOpenLog = false;   //debug模式下为true
     //https域名
     private static List<String> mTrustHostList = new ArrayList<String>();
+    private Map<String,Retrofit> mRetrofits = new HashMap<>();
 
     private final Interceptor REWRITE_RESPONSE_INTERCEPTOR = new Interceptor() {
         @Override
@@ -162,11 +164,16 @@ public class ReoClient {
         }
 
         //默认信任base url域名
+        if (mBaseUrl == null){
+            throw new IllegalArgumentException("base url should not be null.");
+        }
         if (mTrustHostList.size() == 0){
             try {
-                URL url = new URL(mBaseUrl);
-                String host = url.getHost();
-                mTrustHostList.add(host);
+                for (String s:mBaseUrl){
+                    URL url = new URL(s);
+                    String host = url.getHost();
+                    mTrustHostList.add(host);
+                }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -175,13 +182,16 @@ public class ReoClient {
 
         OkHttpClient client = builder.build();
 
-        mRetrofit = new Retrofit.Builder()
-                .baseUrl(mBaseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-//                .addConverterFactory(NoBodyConvertFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .client(client)
-                .build();
+        for (String url:mBaseUrl){
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(url)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(NoBodyConvertFactory.create())
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .client(client)
+                    .build();
+            mRetrofits.put(url,retrofit);
+        }
     }
 
     private OkHttpClient.Builder addTrustHosts(OkHttpClient.Builder builder,@NonNull final List<String> list){
@@ -220,7 +230,7 @@ public class ReoClient {
         this.mContext = context;
     }
 
-    public void setBaseUrl(String url){
+    public void setBaseUrl(List<String> url){
         this.mBaseUrl = url;
     }
 
@@ -240,8 +250,17 @@ public class ReoClient {
         this.mNetworkInterceptors = interceptors;
     }
 
-    public <T>T createApiManager(Class<T> cls){
-        return mRetrofit.create(cls);
+    /**
+     * create customer api manager with baseUrl
+     * @param cls class of your customer api manager
+     * @param baseUrl
+     * @param <T> api manager instance
+     * @return
+     */
+    public <T>T createApiManager(Class<T> cls,String baseUrl){
+        Retrofit retrofit = mRetrofits.get(baseUrl);
+        if (retrofit == null) throw new NullPointerException("can't find client with this url.");
+        return retrofit.create(cls);
     }
 
     public void openLog(boolean open){
@@ -269,7 +288,7 @@ public class ReoClient {
             P.mOpenLog = Util.isDebug(mContext);
         }
 
-        public Builder setBaseUrl(String url){
+        public Builder setBaseUrl(List<String> url){
             P.mBaseUrl = url;
             return this;
         }
@@ -327,7 +346,7 @@ public class ReoClient {
 
     public static class Params {
         private Context mContext;
-        private String mBaseUrl;
+        private List<String> mBaseUrl;
         private Map<String,String> mHeaders;
         private long mTimeout;
         private List<Interceptor> mInterceptors;
