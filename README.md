@@ -5,6 +5,13 @@
 ## Usage
 ```java
     public void initClient(){
+      //base url
+      String url1 = "https://www.sojson.com/";
+      String url2 = "http://v.juhe.cn/";
+      List<String> urlList = new ArrayList<>();
+      urlList.add(url1);
+      urlList.add(url2);
+      
       //headers you want to add
       Map<String,String> headers = HashMap<String,String>()
       headers.put("testHeader","test")
@@ -16,7 +23,7 @@
       
       ReoClient.Builder builder = ReoClient.Builder(context)
       String baseUrl = "http://api.test.com/"
-      ReoClient client = builder.setBaseUrl(baseUrl)
+      ReoClient client = builder.setBaseUrl(urlList)
         .setHeaders(headers)
         .setTimeout(3 * 1000)
         .setTrustHost(list) //not necessary
@@ -24,7 +31,8 @@
         .openLog(true) //not necessary
         .create()
       
-      MyApiManager apiManager = client.createApiManager(MyApiManager::class.java)
+      MyApiManager apiManager = client.createApiManager(MyApiManager::class.java,url1)
+      MyApiManager2 apiManager = client.createApiManager(MyApiManager2::class.java,url2)
     }
 ```
 ## How to do
@@ -41,7 +49,7 @@
 ```groovy
 	dependencies {
           ...
-	        compile 'com.github.abcdqianlei1990:ReoClient:1.0'
+	        compile 'com.github.abcdqianlei1990:ReoClient:1.0.1'
 	}
 ```
 
