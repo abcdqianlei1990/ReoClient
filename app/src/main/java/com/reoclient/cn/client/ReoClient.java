@@ -56,6 +56,7 @@ public class ReoClient {
     //https域名
     private static List<String> mTrustHostList = new ArrayList<String>();
     private Map<String,Retrofit> mRetrofits = new HashMap<>();
+    private OkHttpClient mClient;
 
     private final Interceptor REWRITE_RESPONSE_INTERCEPTOR = new Interceptor() {
         @Override
@@ -130,7 +131,21 @@ public class ReoClient {
         }
     }
 
-    private void initClient(Context context){
+    private void initReoClient(Context context){
+        initOkHttpClient(context);
+        for (String url:mBaseUrl){
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(url)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(NoBodyConvertFactory.create())
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .client(mClient)
+                    .build();
+            mRetrofits.put(url,retrofit);
+        }
+    }
+
+    private void initOkHttpClient(Context context){
         OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
         if(mOpenLog){
             // log interceptor
@@ -162,7 +177,11 @@ public class ReoClient {
                 builder.addNetworkInterceptor(i);
             }
         }
+        initTrustHosts(builder);
+        mClient = builder.build();
+    }
 
+    private void initTrustHosts(OkHttpClient.Builder builder){
         //默认信任base url域名
         if (mBaseUrl == null){
             throw new IllegalArgumentException("base url should not be null.");
@@ -179,19 +198,6 @@ public class ReoClient {
             }
         }
         addTrustHosts(builder,mTrustHostList);
-
-        OkHttpClient client = builder.build();
-
-        for (String url:mBaseUrl){
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(url)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .addConverterFactory(NoBodyConvertFactory.create())
-                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                    .client(client)
-                    .build();
-            mRetrofits.put(url,retrofit);
-        }
     }
 
     private OkHttpClient.Builder addTrustHosts(OkHttpClient.Builder builder,@NonNull final List<String> list){
@@ -259,7 +265,7 @@ public class ReoClient {
      */
     public <T>T createApiManager(Class<T> cls,String baseUrl){
         Retrofit retrofit = mRetrofits.get(baseUrl);
-        if (retrofit == null) throw new NullPointerException("can't find client with this url.");
+        if (retrofit == null) throw new NullPointerException("can't find client with this url.create api manager can only be used in building modle.");
         return retrofit.create(cls);
     }
 
@@ -339,12 +345,12 @@ public class ReoClient {
             client.setTrustHost(P.mTrustHostList);
             client.setCacheable(P.mCacheable);
             client.openLog(P.mOpenLog);
-            client.initClient(P.mContext);
+            client.initReoClient(P.mContext);
             return client;
         }
     }
 
-    public static class Params {
+    private static class Params {
         private Context mContext;
         private List<String> mBaseUrl;
         private Map<String,String> mHeaders;
