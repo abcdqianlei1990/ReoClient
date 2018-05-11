@@ -49,7 +49,7 @@
 ```groovy
 	dependencies {
           ...
-	        compile 'com.github.abcdqianlei1990:ReoClient:1.0.1'
+	        compile 'com.github.abcdqianlei1990:ReoClient:1.0.3'
 	}
 ```
 
