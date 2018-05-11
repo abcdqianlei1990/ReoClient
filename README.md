@@ -1,5 +1,5 @@
 # ReoClient
-对使用retrofit + okhttp网络请求客户端的封装，增加复用性
+对使用retrofit + okhttp网络请求客户端的封装
 
 
 ## Usage
@@ -25,4 +25,31 @@
       String baseUrl = "http://api.test.com/"
       ReoClient client = builder.setBaseUrl(urlList)
         .setHeaders(headers)
-        .setTime
+        .setTimeout(3 * 1000)
+        .setTrustHost(list) //not necessary
+        .setCacheable(true) //not necessary
+        .openLog(true) //not necessary
+        .create()
+      
+      MyApiManager apiManager = client.createApiManager(MyApiManager::class.java,url1)
+      MyApiManager2 apiManager = client.createApiManager(MyApiManager2::class.java,url2)
+    }
+```
+## How to do
+### step 1.Add it in your root build.gradle at the end of repositories:
+```groovy
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+### step 2. Add the dependency
+```groovy
+	dependencies {
+          ...
+	        compile 'com.github.abcdqianlei1990:ReoClient:1.0.3'
+	}
+```
+
